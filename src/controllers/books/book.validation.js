@@ -5,6 +5,7 @@ export const bookSchema = Joi.object(
     title: Joi.string().required(),
     author: Joi.string().required(),
     publishYear: Joi.number().required(),
+    description: Joi.string().required(),
   }
 )
 

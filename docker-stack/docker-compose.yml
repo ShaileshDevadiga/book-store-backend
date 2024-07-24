@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: bookstore
+      MYSQL_USER: developer
+      MYSQL_PASSWORD: developer
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d/:ro

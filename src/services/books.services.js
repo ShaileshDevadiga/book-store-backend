@@ -1,37 +1,62 @@
-import { Book } from '../models/book.model.js';
+import { pool } from '../configs/db.js';
 
 export async function getAllBooksService() {
-  const books = await Book.find({});
-  return books;
+  const query = 'SELECT * FROM books';
+
+  const connection = await pool.getConnection();
+  const [result] = await connection.execute(query)
+  connection.release();
+  return result;
 }
 
-export async function newBookService(title, author, publishYear) {
-  const newBook = {
+export async function newBookService(title, author, publishYear, description) {
+  const query = 'INSERT INTO `books` (title, author, publishYear, description) VALUES (?, ?, ?, ?)';
+  const values = [title, author, publishYear, description];
+
+  const connection = await pool.getConnection();
+  const [result] = await connection.execute(query, values);
+
+  connection.release();
+  return {
+    id: result.insertId,
     title,
     author,
     publishYear,
+    description
   };
-  const book = await Book.create(newBook);
-  return book;
 }
 
 export async function getSingleBookService(id) {
-  const book = await Book.findById(id);
-  return book;
+  const query = 'SELECT * FROM books WHERE `id` = ? LIMIT 1';
+  const values = [id];
+
+  const connection = await pool.getConnection();
+  const [result] = await connection.execute(query, values);
+
+  connection.release();
+
+  return result;
 }
 
-export async function updateBookService(id, title, author, publishYear) {
-  const newBook = {
-    title,
-    author,
-    publishYear,
-  };
+export async function updateBookService(id, title, author, publishYear, description) {
+  const query = 'UPDATE `books` SET `title` = ?,  `author` = ?, `publishYear` = ?, `description` = ? WHERE `id` = ? LIMIT 1';
+  const values = [title, author, publishYear, description, id];
 
-  const result = await Book.findByIdAndUpdate(id, newBook);
-  return result;
+  const connection = await pool.getConnection();
+  await connection.execute(query, values);
+
+  connection.release();
+
+  return true;
 }
 
 export async function deleteBookService(id) {
-  const result = await Book.findByIdAndDelete(id);
-  return result;
+  const query = 'DELETE FROM books WHERE `id` = ? LIMIT 1';
+  const values = [id];
+
+  const connection = await pool.getConnection();
+  await connection.execute(query, values);
+
+  connection.release();
+  return true;
 }

@@ -1,0 +1,17 @@
+CREATE DATABASE IF NOT EXISTS bookstore;
+
+CREATE USER IF NOT EXISTS 'developer'@'%' IDENTIFIED BY 'example';
+
+GRANT ALL PRIVILEGES ON bookstore.* TO developer@'%';
+
+FLUSH PRIVILEGES;
+
+use bookstore;
+
+CREATE TABLE IF NOT EXISTS `books` (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(250) NOT NULL,
+  author VARCHAR(100) NOT NULL,
+  description VARCHAR(500) NOT NULL,
+  publishYear INT NOT NULL
+);

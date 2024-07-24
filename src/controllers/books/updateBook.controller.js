@@ -1,17 +1,19 @@
 import { updateBookService } from '../../services/books.services.js';
-
-import { RouteError } from '../../utils/routeError.js';
+import { RouteError } from '../../utils/routeError.js'
+import { validateBook } from './book.validation.js';
 
 export async function updateBook(req, res, next) {
   try {
     const { id } = req.params;
-    const { title, author, publishYear } = req.body;
+    const { title, author, publishYear, description } = req.body;
 
-    if (!title || !author || !publishYear) {
-      throw new RouteError(400, 'end all required fields, title, author, publishYear');
+    const error = validateBook(req.body);
+
+    if (error) {
+      throw new RouteError(400, error.details[0].message);
     }
 
-    const result = await updateBookService(id, title, author, publishYear);
+    const result = await updateBookService(id, title, author, publishYear, description);
 
     if (!result) {
       throw new RouteError(404, 'Book not found');

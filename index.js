@@ -16,7 +16,7 @@ app.use(
   cors({
     origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type']
+    allowedHeaders: ['Content-Type'],
   })
 );
 
@@ -25,7 +25,7 @@ connectDB();
 app.use('/api/v1', v1Routes);
 
 app.use(
-  "/api-docs",
+  '/api-docs',
   swaggerUi.serve,
   swaggerUi.setup(swaggerUISpecs, { explorer: true })
 );
