@@ -1,0 +1,29 @@
+{
+  "name": "bookstore",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": "22.5.1",
+    "npm": "10.8.2",
+    "pnpm": "9.5.0"
+  },
+  "scripts": {
+    "start": "node --env-file=.env index.js",
+    "dev": "nodemon --env-file=.env index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "4.19.2",
+    "joi": "17.13.3",
+    "mongoose": "8.5.0",
+    "swagger-jsdoc": "6.2.8",
+    "swagger-ui-express": "5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.4"
+  }
+}
