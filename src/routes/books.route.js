@@ -1,6 +1,12 @@
 import { Router } from 'express';
 
-import { getAllBooks, createBook, getSingleBook, updateBook, deleteBook } from '../controllers/books/index.js';
+import {
+  getAllBooks,
+  createBook,
+  getSingleBook,
+  updateBook,
+  deleteBook,
+} from '../controllers/books/index.js';
 
 const router = Router();
 
@@ -12,6 +18,7 @@ const router = Router();
  *       type: object
  *       required:
  *         - title
+ *         - description
  *         - author
  *         - publishYear
  *       properties:
@@ -21,6 +28,9 @@ const router = Router();
  *         title:
  *           type: string
  *           description: The title of your book
+ *         description:
+ *           type: string
+ *           description: The description of your book
  *         author:
  *           type: string
  *           description: The book author
@@ -39,6 +49,7 @@ const router = Router();
  *         _id: d5fE_asz
  *         title: The New Turing Omnibus
  *         author: Alexander K. Dewdney
+ *         description: test description
  *         publishYear: 2024
  *         createdAt: 2024-03-10T04:05:06.157Z
  *         updatedAt: 2024-06-10T04:05:06.157Z
