@@ -1,8 +1,12 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 const bookSchema = new Schema(
   {
     title: {
+      type: String,
+      required: true,
+    },
+    description: {
       type: String,
       required: true,
     },
@@ -13,7 +17,7 @@ const bookSchema = new Schema(
     publishYear: {
       type: Number,
       required: true,
-    }
+    },
   },
   {
     timestamps: true,

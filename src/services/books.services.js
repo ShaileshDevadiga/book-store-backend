@@ -5,9 +5,10 @@ export async function getAllBooksService() {
   return books;
 }
 
-export async function newBookService(title, author, publishYear) {
+export async function newBookService(title, description, author, publishYear) {
   const newBook = {
     title,
+    description,
     author,
     publishYear,
   };
@@ -20,9 +21,16 @@ export async function getSingleBookService(id) {
   return book;
 }
 
-export async function updateBookService(id, title, author, publishYear) {
+export async function updateBookService(
+  id,
+  title,
+  description,
+  author,
+  publishYear
+) {
   const newBook = {
     title,
+    description,
     author,
     publishYear,
   };
