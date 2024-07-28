@@ -1,0 +1,4 @@
+!.*.js
+**/build/**
+**/coverage/**
+**/node_modules/**
